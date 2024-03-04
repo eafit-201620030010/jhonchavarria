@@ -1,0 +1,21 @@
+.header {
+  padding: 10px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: fit-content;
+}
+
+.logo {
+  width: 250px;
+  height: 64px;
+  cursor: pointer;
+}
+
+.router-outlet-container {
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 20px;
+}

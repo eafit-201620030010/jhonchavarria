@@ -1,0 +1,94 @@
+<div class="sb">
+  <input
+    type="text"
+    placeholder="Filtrar productos"
+    [(ngModel)]="filterText"
+    (input)="filterProducts()"
+  />
+
+  <button routerLink="/add">Agregar</button>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Logo</th>
+      <th>Nombre del Producto</th>
+      <th>Descripción</th>
+      <th>Fecha de Liberación</th>
+      <th>Fecha de Reestructuración</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of paginatedProducts">
+      <td><img [src]="product.logo" alt="Logo del producto" /></td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.date_release | date }}</td>
+      <td>{{ product.date_revision | date }}</td>
+      <td>
+        <div style="cursor: pointer">
+          <img
+            src="assets/icon/icon-edit.png"
+            alt=""
+            (click)="editProduct(product)"
+          />
+          <img
+            src="assets/icon/icon-delete.png"
+            alt=""
+            (click)="openDeleteConfirmationModal(product.id, product.name)"
+          />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="sb">
+  <span>{{ filteredProducts.length }} Resultados</span>
+
+  <select
+    id="itemsPerPage"
+    [(ngModel)]="itemsPerPage"
+    (change)="filterProducts()"
+  >
+    <option value="5">5</option>
+    <option value="10">10</option>
+    <option value="20">20</option>
+  </select>
+</div>
+
+<div class="pagination">
+  <button (click)="prevPage()" [disabled]="currentPage === 1">Anterior</button>
+  <span style="margin: 12px">Página {{ currentPage }} de {{ totalPages }}</span>
+  <button (click)="nextPage()" [disabled]="currentPage === totalPages">
+    Siguiente
+  </button>
+</div>
+
+<div class="overlay" *ngIf="showDeleteConfirmationModal">
+  <div class="modal">
+    <div class="modal-header">
+      <h5 class="modal-title">Confirmación de eliminación</h5>
+      <span class="close" (click)="closeDeleteConfirmationModal()"
+        >&times;</span
+      >
+    </div>
+    <div class="modal-body">
+      <p>
+        ¿Estás seguro de eliminar el producto
+        <strong>{{ productNameDelete }}</strong
+        >?
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-cancel" (click)="closeDeleteConfirmationModal()">
+        Cancelar
+      </button>
+      <button class="btn-delete" (click)="deleteProduct(productIdToDelete)">
+        Eliminar
+      </button>
+    </div>
+  </div>
+</div>

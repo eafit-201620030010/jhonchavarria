@@ -1,0 +1,46 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+}
+
+.form-row {
+  display: flex;
+  margin-bottom: 16px;
+}
+
+.form-column {
+  flex: 1;
+  margin-right: 16px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.invalid {
+  border-color: #dc3545;
+}
+
+.required-message {
+  color: red;
+  font-size: 12px;
+}
+
+.alert {
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 8px;
+  border-radius: 4px;
+  margin-top: 16px;
+}
+
+button {
+  margin: 10px;
+}

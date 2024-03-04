@@ -1,0 +1,119 @@
+<h1 class="text-center">Editar registro</h1>
+<hr />
+
+<form [formGroup]="productForm" class="form-container">
+  <div class="form-row">
+    <div class="form-column">
+      <label>ID:</label>
+      <input
+        formControlName="id"
+        readonly="true"
+        [class.invalid]="
+          productForm.get('id')?.invalid && productForm.get('id')?.touched
+        "
+      />
+      <div
+        *ngIf="productForm.get('id')?.invalid && productForm.get('id')?.touched"
+        class="required-message"
+      >
+        Este campo es requerido.
+      </div>
+    </div>
+
+    <div class="form-column">
+      <label>Nombre:</label>
+      <input
+        formControlName="name"
+        [class.invalid]="
+          productForm.get('name')?.invalid && productForm.get('name')?.touched
+        "
+      />
+      <div
+        *ngIf="
+          productForm.get('name')?.invalid && productForm.get('name')?.touched
+        "
+        class="required-message"
+      >
+        Este campo es requerido.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-column">
+      <label>Descripción:</label>
+      <input
+        formControlName="description"
+        [class.invalid]="
+          productForm.get('description')?.invalid &&
+          productForm.get('description')?.touched
+        "
+      />
+      <div
+        *ngIf="
+          productForm.get('description')?.invalid &&
+          productForm.get('description')?.touched
+        "
+        class="required-message"
+      >
+        Este campo es requerido.
+      </div>
+    </div>
+
+    <div class="form-column">
+      <label>Logo:</label>
+      <input
+        formControlName="logo"
+        [class.invalid]="
+          productForm.get('logo')?.invalid && productForm.get('logo')?.touched
+        "
+      />
+      <div
+        *ngIf="
+          productForm.get('logo')?.invalid && productForm.get('logo')?.touched
+        "
+        class="required-message"
+      >
+        Este campo es requerido.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-column">
+      <label>Fecha de Liberación:</label>
+      <input
+        type="date"
+        formControlName="date_release"
+        [class.invalid]="
+          productForm.get('date_release')?.invalid &&
+          productForm.get('date_release')?.touched
+        "
+        [(ngModel)]="productForm.value.date_release"
+      />
+      <div
+        *ngIf="
+          productForm.get('date_release')?.invalid &&
+          productForm.get('date_release')?.touched
+        "
+        class="required-message"
+      >
+        Este campo es requerido y la fecha debe ser igual o mayor a la fecha
+        actual.
+      </div>
+    </div>
+
+    <div class="form-column">
+      <label>Fecha de Revisión:</label>
+      <input type="date" formControlName="date_revision" readonly />
+    </div>
+  </div>
+
+  <div class="form-row" style="justify-content: center">
+    <button type="button" (click)="submitForm()">Enviar</button>
+  </div>
+
+  <div *ngIf="productForm.invalid" class="alert">
+    Por favor, completa todos los campos correctamente.
+  </div>
+</form>
